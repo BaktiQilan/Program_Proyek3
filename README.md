@@ -1,2 +1,2 @@
 # Program_Proyek3
-Repository Program untuk mata kuliah Proyek 3
+Repository Program untuk matakuliah Proyek 3
