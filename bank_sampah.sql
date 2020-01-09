@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2019 at 04:40 AM
+-- Generation Time: Jan 09, 2020 at 01:15 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -31,7 +31,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `jadwal` (
   `id` int(11) NOT NULL,
   `req_id` int(11) NOT NULL,
-  `petugas` varchar(128) NOT NULL,
   `petugas_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -39,8 +38,12 @@ CREATE TABLE `jadwal` (
 -- Dumping data for table `jadwal`
 --
 
-INSERT INTO `jadwal` (`id`, `req_id`, `petugas`, `petugas_id`) VALUES
-(10, 4, 'Petugas tiga', 42);
+INSERT INTO `jadwal` (`id`, `req_id`, `petugas_id`) VALUES
+(10, 4, 42),
+(12, 5, 43),
+(13, 6, 42),
+(14, 5, 42),
+(16, 8, 42);
 
 -- --------------------------------------------------------
 
@@ -61,9 +64,11 @@ CREATE TABLE `req` (
 --
 
 INSERT INTO `req` (`id`, `user_id`, `alamat`, `tgl_jemput`, `status`) VALUES
-(4, '34', 'jl. sarimanah 45', '2019-12-28', 'Belum diambil'),
-(5, '39', 'Jl. cijerokaso 50', '2019-12-31', 'Belum diambil'),
-(6, '39', 'Jl. cijerokaso 50', '2019-12-26', 'Belum diambil');
+(4, '34', 'jl. sarimanah 45', '2019-12-28', 'diambil'),
+(5, '39', 'Jl. cijerokaso 50', '2019-12-31', 'diambil'),
+(6, '39', 'Jl. cijerokaso 50', '2019-12-26', 'diambil'),
+(7, '34', 'jl. sarimanah 45', '2019-12-31', 'Belum diambil'),
+(8, '34', 'jl. sarimanah 45', '2020-01-17', 'Belum diambil');
 
 -- --------------------------------------------------------
 
@@ -96,6 +101,31 @@ INSERT INTO `sampah` (`id`, `nama`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tabungan`
+--
+
+CREATE TABLE `tabungan` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `setoran` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `penarikan` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `tanggal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tabungan`
+--
+
+INSERT INTO `tabungan` (`id`, `user_id`, `setoran`, `penarikan`, `tanggal`) VALUES
+(1, 39, '23000', '', 1577496326),
+(2, 39, '12000', '500', 1577496334),
+(3, 34, '25000', '', 1577496348),
+(4, 39, '', '5000', 1577496348),
+(5, 34, '46000', '', 1577978814);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -118,7 +148,10 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_a
 (10, 'Bakti Qilan Mufid', 'bakti.qilan17@gmail.com', 'AMXU0T8.jpg', '$2y$10$snymZEtGQFixsxZtXepZJemFJp3Q3SKy.DBmYG.zXbWXNRGshNBAS', 1, 1, 1573351183),
 (34, 'Nasabah pertama', 'nasabah1@banksampah.com', 'default.jpg', '$2y$10$I5JXHMPmO4P6DSWHxyttdehvE4YetiULMtzI2uVmp7SM79mf65iEO', 2, 1, 1576637204),
 (39, 'Nasabah kedua', 'nasabah2@banksampah.com', 'default.jpg', '$2y$10$GsFX67IX7Dlax6GddamX/esRjYGTvlQonvTtB2cxxEgOATU.NeOym', 2, 1, 1576750009),
-(42, 'Petugas tiga', 'petugas3@banksampah.com', 'default.jpg', '$2y$10$5ZYSkSNsWQLyFJQOkx5bIeqPfwdSLuZ7zIVwsXbJnsLrCHAghxA5W', 3, 1, 1576810619);
+(42, 'Petugas tiga', 'petugas3@banksampah.com', 'default.jpg', '$2y$10$5ZYSkSNsWQLyFJQOkx5bIeqPfwdSLuZ7zIVwsXbJnsLrCHAghxA5W', 3, 1, 1576810619),
+(43, 'Petugas satu', 'petugas1@banksampah.com', 'default.jpg', '$2y$10$JkJlDMjtkqEQgMAiXDS4dO2lbeIJ7Tzr0YNBKysraRFXrWATwOaUG', 3, 1, 1576814574),
+(44, 'Nasabah ketiga', 'nasabah3@banksampah.com', 'default.jpg', '$2y$10$jT2OM1Su/K5Ox.BONVPHjuNM0OfXTQm1UR0DWdw9yGivQV5KfCIh6', 2, 1, 1578010958),
+(45, 'Petugas dua', 'petugas2@banksampah.com', 'default.jpg', '$2y$10$H.8mDmLqO8KzpeZ7UnUigeMcnyHENB6kPDqu4pcMLTRaGRVjogZ0.', 3, 1, 1578013189);
 
 -- --------------------------------------------------------
 
@@ -142,12 +175,10 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (3, 2, 2),
 (4, 1, 3),
 (7, 2, 13),
-(8, 1, 14),
 (9, 3, 14),
 (10, 3, 2),
 (12, 2, 15),
 (14, 3, 15),
-(16, 1, 13),
 (19, 1, 15),
 (20, 1, 32),
 (21, 2, 33);
@@ -176,7 +207,10 @@ CREATE TABLE `user_detail` (
 INSERT INTO `user_detail` (`id`, `no_rek`, `nama`, `alamat`, `scan_ktp`, `scan_kk`, `user_id`, `role_id`) VALUES
 (15, 'BS0001', 'Nasabah pertama', 'jl. sarimanah 45', 'KTP.jpg', 'kartu-keluarga.jpg', 34, 2),
 (20, 'BS0002', 'Nasabah kedua', 'Jl. cijerokaso 50', 'download.jpg', 'kk1.jpg', 39, 2),
-(22, '0', 'Petugas tiga', 'jl. sariasih', 'default.png', 'default.png', 42, 3);
+(22, '0', 'Petugas tiga', 'jl. sariasih', 'default.png', 'default.png', 42, 3),
+(23, '0', 'Petugas satu', '-', 'default.png', 'default.png', 43, 3),
+(24, 'BS0003', 'Nasabah ketiga', 'Jl. Pasirhuni', 'ktp2.jpg', 'kk.png', 44, 2),
+(25, '0', 'Petugas dua', 'Jl. cibogo', 'default.png', 'default.png', 45, 3);
 
 -- --------------------------------------------------------
 
@@ -219,7 +253,7 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Administrator'),
-(2, 'Member'),
+(2, 'Nasabah'),
 (3, 'Petugas'),
 (6, 'caa');
 
@@ -255,11 +289,12 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`) VALUES
 (16, 15, 'Harga Sampah', 'info', 'fas fa-fw fa-dollar-sign'),
 (17, 14, 'Pengambilan Sampah', 'petugas', 'fas fa-fw fa-handshake'),
 (20, 0, '', '', ''),
-(23, 14, 'Input Data Sampah Nasabah', 'petugas/input', 'fas fa-fw fa-keyboard'),
 (24, 1, 'Input Sampah', 'admin/sampah', 'fas fa-fw fa-keyboard'),
 (25, 2, 'Data Detail', 'user/data', 'fas fa-fw fa-user-tie'),
 (26, 33, 'Meminta Jemput Sampah', 'request', 'fas fa-fw fa-pen-alt'),
-(27, 1, 'Jemput Sampah', 'admin/jemput', 'fas fa-fw fa-pen-alt');
+(27, 1, 'Jemput Sampah', 'admin/jemput', 'fas fa-fw fa-pen-alt'),
+(29, 14, 'Histori Pengambilan', 'petugas/histori', 'fas fa-fw fa-history'),
+(30, 1, 'Histori Penjemputan', 'admin/histori', 'fas fa-fw fa-history');
 
 --
 -- Indexes for dumped tables
@@ -281,6 +316,12 @@ ALTER TABLE `req`
 -- Indexes for table `sampah`
 --
 ALTER TABLE `sampah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabungan`
+--
+ALTER TABLE `tabungan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -327,13 +368,13 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `req`
 --
 ALTER TABLE `req`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sampah`
@@ -342,10 +383,16 @@ ALTER TABLE `sampah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `tabungan`
+--
+ALTER TABLE `tabungan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
@@ -357,7 +404,7 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
@@ -375,7 +422,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

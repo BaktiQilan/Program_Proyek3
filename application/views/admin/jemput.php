@@ -77,12 +77,9 @@ foreach ($jemput as $j) : $i++; ?>
                             <select name="petugas" id="petugas" class="form-control">
                                 <option value="">Pilih Petugas</option>
                                 <?php foreach ($petugas as $p) : ?>
-                                    <option value="<?= $p['name'] ?>"><?= $p['name'] ?> <?= $p['id'] ?></option>
+                                    <option value="<?= $p['id'] ?>"><?= $p['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" value="" class="form-control" id="petugas_id" name="petugas_id" readonly>
                         </div>
                     </div>
                     <div class="modal-footer">

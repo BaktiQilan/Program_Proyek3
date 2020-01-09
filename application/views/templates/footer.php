@@ -48,6 +48,8 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
@@ -84,16 +86,12 @@
         $('#forminput').submit();
     });
 
-    $(document).ready(function() {
-        $("#petugas_id").change(function() {
-            $.ajax({
-                type: 'POST',
-                data: {
-                    keyname: $('#petugas_id option:selected').val()
-                }
-            });
-        });
-    });
+    $(function() {
+        $("#petugas").change(function() {
+            var displaycourse = $("#petugas option:selected").text();
+            $("#petugas_id").val(displaycourse);
+        })
+    })
 </script>
 </body>
 

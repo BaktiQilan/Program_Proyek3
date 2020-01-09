@@ -24,6 +24,27 @@
                 </button>
             </form>
         </div>
+
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tanggal Penjemputan</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i = 1; ?>
+                <?php foreach ($histori as $h) : ?>
+                    <tr>
+                        <th scope="row"><?= $i; ?></th>
+                        <td><?= date('d-m-Y', strtotime($h['tgl_jemput'])); ?></td>
+                        <td><?= $h['status']; ?></td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
 </div>

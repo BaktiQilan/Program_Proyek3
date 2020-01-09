@@ -114,8 +114,9 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Aktivasi Nasabah';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        #$this->load->model('Aktivasi_model', 'aktivasi', TRUE);
+
         $data['hasil'] = $this->db->get_where('user_detail', ['role_id' => '2'])->result_array();
+        $data['aktivasi'] = $this->admin->getAktivasi();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -222,12 +223,25 @@ class Admin extends CI_Controller
         } else {
             $query = [
                 'req_id' => $this->input->post('req_id'),
-                'petugas' => $this->input->post('petugas'),
-                'petugas_id' => $this->input->post('petugas_id')
+                'petugas_id' => $this->input->post('petugas')
             ];
             $this->db->insert('jadwal', $query);
             $this->session->set_flashdata('message', '<div class="alert alert-success mx-auto" role="alert">Data Penjemputan berhasil di jadwalkan!</div>');
             redirect('admin/jemput');
         }
+    }
+
+    public function histori()
+    {
+        $data['title'] = 'Histori Penjemputan Sampah';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['histori'] = $this->admin->getHistori();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/histori', $data);
+        $this->load->view('templates/footer');
     }
 }

@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($hasil as $a) : ?>
+                    <?php foreach ($aktivasi as $a) : ?>
                         <tr>
                             <th scope="row"><?= $i; ?></th>
                             <td><?= $a['no_rek']; ?></td>

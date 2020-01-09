@@ -15,6 +15,8 @@ class Request extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['nasabah'] = $this->db->get_where('user_detail', ['user_id' => $this->session->userdata('id')])->row_array();
+        $data['histori'] = $this->request->histori();
+
 
         $this->form_validation->set_rules('tanggal', 'Tanggal Penjemputan', 'required|trim', [
             'required' => 'tanggal harus diisi'
