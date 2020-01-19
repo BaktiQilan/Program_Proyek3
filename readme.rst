@@ -1,4 +1,16 @@
 ###################
+Program Proyek 3
+###################
+
+Sebagai Syarat kelulusan matakuliah Proyek 3
+
+*******************
+Dibuat Oelh
+*******************
+-  Arrizal Furqona Gifary   -   1.17.4.070
+-  Bakti QIlan Mufid        -   1.17.4.083
+
+###################
 What is CodeIgniter
 ###################
 
