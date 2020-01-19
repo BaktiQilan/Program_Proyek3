@@ -113,8 +113,7 @@ foreach ($subMenu as $sm) : $i++; ?>
                 </div>
                 <form action=" <?= base_url('menu/editsm'); ?> " method="post">
                     <div class="modal-body">
-                        <input type="text" readonly value="<?= $sm['id']; ?>" class="form-control" id="id" name="id">
-
+                        <input type="text" readonly value="<?= $sm['id']; ?>" class="form-control" id="id" name="id" hidden>
                         <div class="form-group">
                             <input type="text" value="<?= $sm['title']; ?>" class="form-control" id="title" name="title" placeholder="Submenu title">
                         </div>

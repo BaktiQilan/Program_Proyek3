@@ -56,4 +56,21 @@ class Admin_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function penarikan()
+    {
+        $this->db->select('tarik.*, user_detail.nama');
+        $this->db->from('tarik');
+        $this->db->join('user_detail', 'tarik.user_id = user_detail.user_id');
+        $this->db->order_by('tarik.id');
+        $this->db->where('tarik.status = "belum disetujui"');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function hapus_tarik($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tarik');
+    }
 }

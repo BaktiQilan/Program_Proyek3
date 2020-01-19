@@ -27,4 +27,13 @@ class Tabungan_model extends CI_Model
         $result = $this->db->get_where('user_detail', ['user_id' => $this->session->userdata('id')]);
         return $result->row_array();
     }
+
+    public function histori()
+    {
+        $this->db->select('*');
+        $this->db->from('tarik');
+        $this->db->group_by('id');
+
+        return $this->db->get_where('', ['user_id' => $this->session->userdata('id')])->result_array();
+    }
 }

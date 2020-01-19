@@ -244,4 +244,52 @@ class Admin extends CI_Controller
         $this->load->view('admin/histori', $data);
         $this->load->view('templates/footer');
     }
+
+    public function tarik()
+    {
+        $data['title'] = 'Permintaan Penarikan Saldo';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['penarikan'] = $this->admin->penarikan();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/tarik');
+        $this->load->view('templates/footer');
+    }
+
+    public function saldoTarik()
+    {
+        $this->form_validation->set_rules('id', 'Id', 'required', [
+            'required' => 'id Harus dipilih!'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger mx-auto" role="alert">Penarikan Saldo gagal di Validasi!</div>');
+            redirect('admin/tarik');
+        } else {
+            $query = [
+                'user_id' => $this->input->post('user_id'),
+                'penarikan' => $this->input->post('penarikan'),
+                'tanggal' => time()
+            ];
+            $query2 = [
+                'status' => 'disetujui'
+            ];
+            $this->db->insert('tabungan', $query);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('tarik', $query2);
+            $this->session->set_flashdata('message', '<div class="alert alert-success mx-auto" role="alert">Penarikan Saldo berhasil!</div>');
+            redirect('admin/tarik');
+        }
+    }
+
+    public function hapusTarik()
+    {
+        $id = $this->input->post('id');
+        $this->admin->hapus_tarik($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-info mx-auto" role="alert">Data Penarikan tidak disetujui!</div>');
+        redirect('admin/tarik');
+    }
 }

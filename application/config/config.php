@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | ubah IP dengan IP localhost, agar dapat diakses oleh device android
 | 'http://192.168.43.74/bank-sampah/'
 */
-$config['base_url'] = 'http://localhost/bank-sampah/';
+$config['base_url'] = 'http://192.168.43.74/bank-sampah/';
 
 /*
 |--------------------------------------------------------------------------
