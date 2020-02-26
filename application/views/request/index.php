@@ -18,6 +18,9 @@
                 <div class="form-group">
                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                     <?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <small id="note" class="form-text text-danger">
+                        *minimal berat sampah yang akan dijemput 1 kg.
+                    </small>
                 </div>
                 <button href="submit" class="btn btn-success">
                     Jemput

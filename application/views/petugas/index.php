@@ -70,10 +70,10 @@ foreach ($ambil as $b) : $i++; ?>
                 <form action="<?= base_url('petugas/input'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" value="<?= $b->req_id; ?>" readonly class="form-control" id="req_id" name="req_id">
+                            <input hidden type="text" value="<?= $b->req_id; ?>" readonly class="form-control" id="req_id" name="req_id">
                         </div>
                         <div class="form-group">
-                            <input type="text" value="<?= $b->id; ?>" readonly class="form-control" id="id" name="id">
+                            <input hidden type="text" value="<?= $b->id; ?>" readonly class="form-control" id="id" name="id">
                         </div>
                         <div class="form-group">
                             <label for="j_sampah">Jenis Sampah</label>
@@ -89,6 +89,21 @@ foreach ($ambil as $b) : $i++; ?>
                             <label for="b_sampah">Berat Sampah (kg)</label>
                             <input type="text" class="form-control" id="b_sampah" name="b_sampah">
                             <?= form_error('b_sampah', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="j_sampah2">Jenis Sampah</label>
+                            <select name="j_sampah2" id="j_sampah2" class="form-control">
+                                <option value="">Pilih Jenis Sampah</option>
+                                <?php foreach ($petugas as $p) : ?>
+                                    <option value="<?= $p['harga'] ?>"><?= $p['nama'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <?= form_error('j_sampah2', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="b_sampah2">Berat Sampah (kg)</label>
+                            <input type="text" class="form-control" id="b_sampah2" name="b_sampah2">
+                            <?= form_error('b_sampah2', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="modal-footer">

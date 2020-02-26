@@ -138,7 +138,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('role_id');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success mx-auto" role="alert">Anda telah berhasil Logout</div>');
-        redirect('auth');
+        redirect('welcome');
     }
 
     public function blocked()

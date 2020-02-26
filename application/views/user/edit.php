@@ -40,6 +40,9 @@
                             </div>
                         </div>
                     </div>
+                    <small id="note" class="form-text text-danger">
+                        *foto profil yang di-upload hanya format png atau jpg.
+                    </small>
                 </div>
             </div>
 

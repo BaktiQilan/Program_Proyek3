@@ -37,7 +37,10 @@ class Petugas extends CI_Controller
 
         $setoranjmlh['v1'] = (int) $this->input->post('j_sampah', true);
         $setoranjmlh['v2'] = (int) $this->input->post('b_sampah', true);
-        $setoran = $setoranjmlh['v1'] * $setoranjmlh['v2'];
+        $setoranjmlh['w1'] = (int) $this->input->post('j_sampah2', true);
+        $setoranjmlh['w2'] = (int) $this->input->post('b_sampah2', true);
+
+        $setoran = ($setoranjmlh['v1'] * $setoranjmlh['v2']) + ($setoranjmlh['w1'] * $setoranjmlh['w2']);
         $user_id = (int) $this->input->post('id', true);
 
         $this->form_validation->set_rules('j_sampah', 'Jenis Sampah', 'required', [

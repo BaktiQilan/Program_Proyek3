@@ -32,7 +32,7 @@
                             <td><?= date('d-m-Y', $p->tanggal); ?></td>
                             <td><?= $p->status; ?></td>
                             <td>
-                                <a href="" class="badge badge-info" data-toggle="modal" data-target="#aturPenarikanModal<?= $p->id; ?>">Atur</a>
+                                <a href="" class="badge badge-info" data-toggle="modal" data-target="#aturPenarikanModal<?= $p->id; ?>">Setujui</a>
                                 <a href="" class="badge badge-danger" data-toggle="modal" data-target="#hapusPenarikanModal<?= $p->id; ?>">Hapus</a>
                             </td>
                         </tr>

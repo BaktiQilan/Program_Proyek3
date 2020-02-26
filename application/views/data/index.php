@@ -69,6 +69,9 @@
                             </div>
                         </div>
                     </div>
+                    <small id="note" class="form-text text-danger">
+                        *file hasil scan yang diupload hanya ber-format png atau jpg. minimal resolusi 800px
+                    </small>
                 </div>
             </div>
 
