@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2020 at 08:56 PM
+-- Generation Time: Feb 27, 2020 at 01:28 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -43,7 +43,13 @@ INSERT INTO `jadwal` (`id`, `req_id`, `petugas_id`) VALUES
 (12, 5, 43),
 (13, 6, 42),
 (14, 5, 42),
-(16, 8, 42);
+(16, 8, 42),
+(17, 9, 43),
+(18, 10, 43),
+(19, 11, 45),
+(20, 13, 43),
+(21, 14, 43),
+(22, 15, 43);
 
 -- --------------------------------------------------------
 
@@ -68,7 +74,14 @@ INSERT INTO `req` (`id`, `user_id`, `alamat`, `tgl_jemput`, `status`) VALUES
 (5, '39', 'Jl. cijerokaso 50', '2019-12-31', 'diambil'),
 (6, '39', 'Jl. cijerokaso 50', '2019-12-26', 'diambil'),
 (7, '34', 'jl. sarimanah 45', '2019-12-31', 'Belum diambil'),
-(8, '34', 'jl. sarimanah 45', '2020-01-17', 'Belum diambil');
+(8, '34', 'jl. sarimanah 45', '2020-01-17', 'diambil'),
+(9, '39', 'Jl. cijerokaso 50', '2020-01-31', 'diambil'),
+(10, '34', 'jl. sarimanah 45', '2020-01-16', 'diambil'),
+(11, '39', 'Jl. cijerokaso 50', '2020-02-01', 'diambil'),
+(12, '39', 'Jl. cijerokaso 50', '2020-01-31', 'Belum diambil'),
+(13, '39', 'Jl. cijerokaso 50', '2020-02-15', 'diambil'),
+(14, '39', 'Jl. cijerokaso 50', '2020-02-16', 'diambil'),
+(15, '39', 'Jl. cijerokaso 50', '2020-02-17', 'Belum diambil');
 
 -- --------------------------------------------------------
 
@@ -87,16 +100,16 @@ CREATE TABLE `sampah` (
 --
 
 INSERT INTO `sampah` (`id`, `nama`, `harga`) VALUES
-(1, 'Besi', 23000),
+(1, 'Logam Besi', 23000),
 (2, 'Botol Plastik', 6000),
-(4, 'Kertas', 5500),
+(4, 'Kertas Koran', 5500),
 (5, 'Gelas Plastik', 5000),
-(6, 'Ban Luar ', 15000),
-(7, 'Kardus', 7500),
+(6, 'Ban Bekas', 15000),
+(7, 'Kertas Kardus', 7500),
 (8, 'Karung', 4500),
 (9, 'Botol Kaca', 8000),
-(10, 'Alumunium', 6000),
-(11, 'Kaleng', 5500);
+(10, 'Logam Alumunium', 6000),
+(11, 'Logam TImah', 5500);
 
 -- --------------------------------------------------------
 
@@ -124,7 +137,15 @@ INSERT INTO `tabungan` (`id`, `user_id`, `setoran`, `penarikan`, `tanggal`) VALU
 (5, 34, '46000', '', 1577978814),
 (10, 39, '', '2000', 1579018725),
 (11, 34, '', '6000', 1579459274),
-(12, 34, '', '5000', 1579463163);
+(12, 34, '', '5000', 1579463163),
+(13, 39, '27500', '', 1580343406),
+(14, 39, '', '50000', 1580343541),
+(15, 34, '50000', '', 1580351618),
+(16, 39, '10000', '', 1580351797),
+(17, 39, '', '10000', 1580352012),
+(18, 34, '12000', '', 1580689482),
+(19, 39, '15500', '', 1580689929),
+(20, 39, '23000', '', 1580689950);
 
 -- --------------------------------------------------------
 
@@ -146,9 +167,10 @@ CREATE TABLE `tarik` (
 
 INSERT INTO `tarik` (`id`, `user_id`, `penarikan`, `tanggal`, `status`) VALUES
 (1, 39, '2000', 1579013097, 'disetujui'),
-(2, 39, '2000', 1579013235, 'belum disetujui'),
 (5, 34, '6000', 1579459022, 'disetujui'),
-(6, 34, '5000', 1579463143, 'disetujui');
+(6, 34, '5000', 1579463143, 'disetujui'),
+(7, 39, '50000', 1580343496, 'disetujui'),
+(8, 39, '10000', 1580351963, 'disetujui');
 
 -- --------------------------------------------------------
 
@@ -179,7 +201,9 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_a
 (43, 'Petugas satu', 'petugas1@banksampah.com', 'default.jpg', '$2y$10$JkJlDMjtkqEQgMAiXDS4dO2lbeIJ7Tzr0YNBKysraRFXrWATwOaUG', 3, 1, 1576814574),
 (44, 'Nasabah ketiga', 'nasabah3@banksampah.com', 'default.jpg', '$2y$10$jT2OM1Su/K5Ox.BONVPHjuNM0OfXTQm1UR0DWdw9yGivQV5KfCIh6', 2, 1, 1578010958),
 (45, 'Petugas dua', 'petugas2@banksampah.com', 'default.jpg', '$2y$10$H.8mDmLqO8KzpeZ7UnUigeMcnyHENB6kPDqu4pcMLTRaGRVjogZ0.', 3, 1, 1578013189),
-(49, 'Nasabah keempat', 'nasabah4@banksampah.com', 'default.jpg', '$2y$10$2r3UOEQNLnGDCbFJvf7.VugfMkt9kFqa5umm45BNM4iXd3KTZX9Fa', 2, 1, 1579006885);
+(49, 'Nasabah keempat', 'nasabah4@banksampah.com', 'default.jpg', '$2y$10$2r3UOEQNLnGDCbFJvf7.VugfMkt9kFqa5umm45BNM4iXd3KTZX9Fa', 2, 1, 1579006885),
+(50, 'Coba', 'Coba@gmail.com', 'default.jpg', '$2y$10$dEeMdsUJ0FpPzvpnvatvp.Qp57ERSuoTNpuNYzbblt5/hoAMMTOWK', 2, 1, 1580344099),
+(51, 'nasabah5', 'nasabah5@gmail.com', 'default.jpg', '$2y$10$.vvXiBZowd34PNdBX3T2reEYvhkwSJHBiBJH72VD3NTkodZ/jEGzq', 2, 1, 1580351037);
 
 -- --------------------------------------------------------
 
@@ -240,7 +264,9 @@ INSERT INTO `user_detail` (`id`, `no_rek`, `nama`, `alamat`, `scan_ktp`, `scan_k
 (23, '0', 'Petugas satu', '-', 'default.png', 'default.png', 43, 3),
 (24, 'BS0003', 'Nasabah ketiga', 'Jl. Pasirhuni', 'ktp2.jpg', 'kk.png', 44, 2),
 (25, '0', 'Petugas dua', 'Jl. cibogo', 'default.png', 'default.png', 45, 3),
-(29, '0', 'Nasabah keempat', 'Jl. cijerokaso', 'room2.png', '120006.jpg', 49, 2);
+(29, 'BS0004', 'Nasabah keempat', 'Jl. cijerokaso', 'download_(1).jpg', 'download.jpg', 49, 2),
+(30, '0', 'Coba', 'Jl cobacoba', 'default.png', 'default.png', 50, 2),
+(31, '0', 'nasabah5', 'bandung', 'default.png', 'download1.jpg', 51, 2);
 
 -- --------------------------------------------------------
 
@@ -406,13 +432,13 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `req`
 --
 ALTER TABLE `req`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `sampah`
@@ -424,19 +450,19 @@ ALTER TABLE `sampah`
 -- AUTO_INCREMENT for table `tabungan`
 --
 ALTER TABLE `tabungan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tarik`
 --
 ALTER TABLE `tarik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
@@ -448,7 +474,7 @@ ALTER TABLE `user_access_menu`
 -- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
